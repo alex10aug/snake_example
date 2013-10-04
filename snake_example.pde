@@ -6,10 +6,11 @@ int d = 10;
 int r = d/2;
 
 void setup() {
-  size(500,500);
-//Assign starting x and y values
-//For now, I'm creating a straight line
-//Each x coordinate is one diameter further over than the one before it
+  
+  size(500, 500);
+  //Assign starting x and y values
+  //For now, I'm creating a straight line
+  //Each x coordinate is one diameter further over than the one before it
   for (int i = 0; i < x.length; i++) {
     x[i] = d*3 + i*d;
     y[i] = 30;
@@ -17,9 +18,26 @@ void setup() {
 }
 
 void draw() {
+  background(0);
   //use a for loop to draw a circle with each set of values in the two arrays
-  for (int i = 0; i < x.length; i++) {
+  //by switching the order, I made the 'head' draw above the 'tail'
+  for (int i = x.length-1; i >0; i--) {
     ellipse(x[i], y[i], d, d);
   }
+  /*
+  To make the snake move, I'm going to move the second-to-last set of values into
+   the last spot in the arrays, the third-to-last set of values into the second-to-last 
+   spot in the arrays, and so on.  After I move the first set of values into the second
+   spot, I'll create a new value for the first spot in the arrays.
+   */
+  if (mouseX != pmouseX || mouseY != pmouseY) {
+    for (int i = x.length-1; i > 0; i--) {
+      x[i] = x[i-1];
+      y[i] = y[i-1];
+    }
+  }
+  //when I set the first value in each array to be the location of the mouse, snakes follows mouse
+  x[0] = mouseX;
+  y[0] = mouseY;
 }
 
