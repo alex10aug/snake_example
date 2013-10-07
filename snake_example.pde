@@ -6,7 +6,7 @@ int d = 10;
 int r = d/2;
 
 void setup() {
-  
+
   size(500, 500);
   //Assign starting x and y values
   //For now, I'm creating a straight line
@@ -30,14 +30,14 @@ void draw() {
    spot in the arrays, and so on.  After I move the first set of values into the second
    spot, I'll create a new value for the first spot in the arrays.
    */
-  if (mouseX != pmouseX || mouseY != pmouseY) {
-    for (int i = x.length-1; i > 0; i--) {
-      x[i] = x[i-1];
-      y[i] = y[i-1];
-    }
+
+  for (int i = x.length-1; i > 0; i--) {
+    x[i] = x[i-1];
+    y[i] = y[i-1];
   }
-  //when I set the first value in each array to be the location of the mouse, snakes follows mouse
-  x[0] = mouseX;
-  y[0] = mouseY;
+
+  //Now I've changed it so that the first value in the y array increases by the diameter of the body segment
+  x[0] = x[0];
+  y[0] = y[0] + d;
 }
 
