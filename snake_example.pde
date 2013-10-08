@@ -36,8 +36,24 @@ void draw() {
     y[i] = y[i-1];
   }
 
-  //Now I've changed it so that the first value in the y array increases by the diameter of the body segment
-  x[0] = x[0];
-  y[0] = y[0] + d;
+  //Now that I know how to make it move, let's change where the new coordinate goes to based on the keyboard
+  if (keyPressed) {
+    if (key == 'w') {
+      //move up (decrease the y value) if 'd' is pressed
+      y[0] -= d;
+    }
+    if (key == 'a') {
+      //move left (decrease the x value) if 'a' is pressed
+      x[0] -= d;
+    }
+    if (key == 's') {
+      //move down (increase the y value) if 's' is pressed
+      y[0] += d;
+    }
+    if (key == 'd') {
+      //move right (increase the x value) if 'd' is pressed
+      x[0] += d;
+    }
+  }
 }
 
